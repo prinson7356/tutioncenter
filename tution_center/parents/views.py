@@ -9,16 +9,15 @@ from teachers.models import TeacherProfile
 from register.models import Student
 
 
-# =========================
+
 # HOME
-# =========================
+
 def home(request):
     return render(request, 'home.html')
 
 
-# =========================
 # LOGIN
-# =========================
+
 def login(request):
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -40,9 +39,9 @@ def login(request):
     return render(request, 'login.html')
 
 
-# =========================
+
 # REGISTER (PARENT)
-# =========================
+
 def register(request):
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -84,17 +83,17 @@ def register(request):
     return render(request, 'parents/parent_register.html')
 
 
-# =========================
+
 # LOGOUT
-# =========================
+
 def logout(request):
     auth_logout(request)
     return redirect('home')
 
 
-# =========================
+
 # PARENT DASHBOARD
-# =========================
+
 @login_required
 def parent_home(request):
     try:
@@ -113,9 +112,9 @@ def parent_home(request):
         return redirect('login')
 
 
-# =========================
+
 # ADMIN DASHBOARD
-# =========================
+
 @login_required
 @user_passes_test(lambda u: u.is_superuser)
 def admin_home(request):
@@ -133,9 +132,9 @@ def admin_bookings(request):
     })
 
 
-# =========================
+
 # BOOKING ACTIONS
-# =========================
+
 @login_required
 @user_passes_test(lambda u: u.is_superuser)
 def approve_booking(request, id):
@@ -153,9 +152,9 @@ def reject_booking(request, id):
     return redirect('admin_bookings')
 
 
-# =========================
+
 # ADMIN APPROVALS
-# =========================
+
 @login_required
 @user_passes_test(lambda u: u.is_superuser)
 def admin_approvals(request):

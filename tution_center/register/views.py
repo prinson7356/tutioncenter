@@ -47,7 +47,7 @@ def book_teacher(request):
 def payment(request, booking_id):
     booking = Booking.objects.get(id=booking_id)
     if request.method == 'POST':
-        # Process payment 
+        # Process payment now it is paid
         booking.payment_status = 'paid'
         booking.save()
         return redirect('parent_home')
